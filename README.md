@@ -3,7 +3,7 @@
 3. Press Data Gather Button
 4. To see the PDF press show Invoice Button
 
-Project Split-up /n 
-Michael Reiter: JavaFX Client, RestAPI /n
-Maria Mirnic: Station Data Collector, Data Collection Receiver /n
-Nazia Nazari: Data Collection Dispatcher /n
+Project Split-up   
+Michael Reiter: JavaFX Client, RestAPI  
+Maria Mirnic: Station Data Collector, Data Collection Receiver  
+Nazia Nazari: Data Collection Dispatcher  
