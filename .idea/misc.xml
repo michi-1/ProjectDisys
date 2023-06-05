@@ -6,6 +6,9 @@
         <option value="$PROJECT_DIR$/pdfgen/pom.xml" />
         <option value="$PROJECT_DIR$/Backend/RestAPIP/pom.xml" />
         <option value="$PROJECT_DIR$/Frontend/Client/pom.xml" />
+        <option value="$PROJECT_DIR$/Backend/DataCollectionDispatcher/pom.xml" />
+        <option value="$PROJECT_DIR$/Backend/StationDataCollector/pom.xml" />
+        <option value="$PROJECT_DIR$/Backend/StationDataCollector/StationDataCollector/pom.xml" />
       </list>
     </option>
   </component>

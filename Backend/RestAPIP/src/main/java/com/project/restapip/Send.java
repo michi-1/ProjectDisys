@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class Send {
-    private final static String QUEUE_NAME = "hello";
+    private final static String QUEUE_NAME = "Red";
     public String sender(String s1){
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
@@ -15,8 +15,7 @@ public class Send {
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            String message = "Hello World!";
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+            channel.basicPublish("", QUEUE_NAME, null, s1.getBytes());
             System.out.println(" [x] Sent '" + s1 + "'");
         } catch (IOException e) {
             throw new RuntimeException(e);
