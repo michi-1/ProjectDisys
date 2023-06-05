@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/Frontend/Client/Client.iml" filepath="$PROJECT_DIR$/Frontend/Client/Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ProjectDisys-git.iml" filepath="$PROJECT_DIR$/.idea/ProjectDisys-git.iml" />
       <module fileurl="file://$PROJECT_DIR$/Backend/RestAPIP/RestAPIP.iml" filepath="$PROJECT_DIR$/Backend/RestAPIP/RestAPIP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Backend/StationDataCollector/StationDataCollector.iml" filepath="$PROJECT_DIR$/Backend/StationDataCollector/StationDataCollector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Backend/DataCollectionDispatcher/jdbc-test.iml" filepath="$PROJECT_DIR$/Backend/DataCollectionDispatcher/jdbc-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/pdfgen/pdfgen.iml" filepath="$PROJECT_DIR$/pdfgen/pdfgen.iml" />
     </modules>
   </component>

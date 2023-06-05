@@ -14,7 +14,7 @@ import java.util.concurrent.TimeoutException;
 
 public class SENDER {
     //customer id und count weiterleiten, die ich vom receiver bekomme
-    private final static String QUEUE_NAME = "SENDER"; //mq
+    private final static String QUEUE_NAME = "Green"; //mq
     private static int custerid;
     private static int counter; //number of stations
 

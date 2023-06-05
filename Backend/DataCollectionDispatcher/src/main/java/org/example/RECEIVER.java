@@ -9,7 +9,7 @@ import java.util.concurrent.TimeoutException;
 import org.example.SENDER;
 
 public class RECEIVER {
-    private final static String QUEUE_NAME = "CUSTOMERID";
+    private final static String QUEUE_NAME = "Red";
 
     public static void receive() throws IOException, TimeoutException {
 
@@ -43,6 +43,5 @@ public class RECEIVER {
 
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
         });
-
     }
 }

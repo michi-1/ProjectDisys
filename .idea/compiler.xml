@@ -6,15 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Client" />
+        <module name="StationDataCollector" />
         <module name="pdfgen" />
+        <module name="jdbc-test" />
+        <module name="Client" />
         <module name="RestAPIP" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Client" target="17" />
+      <module name="jdbc-test" target="17" />
       <module name="pdfgen" target="17" />
       <module name="RestAPIP" target="17" />
+      <module name="StationDataCollector" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
