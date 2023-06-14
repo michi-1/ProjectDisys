@@ -1,5 +1,5 @@
- //nimmt aus der stations db die url raus der einzelnen stations und gibt an, wie viele stations
- // es insgesamt gibt, weiter schicken an messaging queue : Einheit Datenbanken
+//nimmt aus der stations db die url raus der einzelnen stations und gibt an, wie viele stations
+// es insgesamt gibt, weiter schicken an messaging queue : Einheit Datenbanken
 
 package org.example;
 //import für db connection
@@ -18,14 +18,15 @@ import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class Main {
-//Sends a message for every charging station to the Station Data Collector
-    private final static String QUEUE_NAME = "SENDER"; //mq
+
 
     public static void main(String[] args) throws IOException, TimeoutException, SQLException {
 
-        RECEIVER receiver = new RECEIVER();
 
-        receiver.receive();
+        //empfängt custerid
+
+        Queue queue = new Queue();
+        queue.receive();
 
     }
-        }
+}
