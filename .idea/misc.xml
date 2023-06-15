@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/Backend/DataCollectionDispatcher/pom.xml" />
         <option value="$PROJECT_DIR$/Backend/StationDataCollector/pom.xml" />
         <option value="$PROJECT_DIR$/Backend/StationDataCollector/StationDataCollector/pom.xml" />
+        <option value="$PROJECT_DIR$/Backend/StationDataReceiver/pom.xml" />
+        <option value="$PROJECT_DIR$/Backend/DataCollectionReceiver/pom.xml" />
       </list>
     </option>
   </component>

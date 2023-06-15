@@ -70,7 +70,7 @@ public class Queue {
         //db_url an receiver senden
         int length = data.size();
         for(int i = 0; i< length; i++) {
-            String message = data.get(i); //einzelne Werte der datenbank
+            String message = customerid+";"+data.get(i); //einzelne Werte der datenbank
             System.out.println(message);
             channel.queueDeclare(QUEUE_NAME2, false, false, false, null);
             channel.basicPublish("", QUEUE_NAME2, null, message.getBytes(StandardCharsets.UTF_8));
@@ -85,7 +85,7 @@ public class Queue {
         String message = "Customerid und Counter: ";
         String cid = String.valueOf(customerid);
         String cnt = String.valueOf(count);
-        System.out.println("Customerid: " +  cid +  "Counter: " + cnt);
+       // System.out.println("Customerid: " +  cid +  "Counter: " + cnt);
 
         channel.basicPublish("", QUEUE_NAME1, null, message.getBytes(StandardCharsets.UTF_8));
         channel.basicPublish("", QUEUE_NAME1, null, cid.getBytes(StandardCharsets.UTF_8));

@@ -24,9 +24,6 @@ public class DatabaseConnection{
         //number of stations:
         int count = 0;
         //MQ
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        factory.setPort(30003);
 
         String query = "SELECT * FROM station"; //prepared statemenz db
 
@@ -44,7 +41,7 @@ public class DatabaseConnection{
                 Station s = new Station(id, db_url, lat, lng);
                 System.out.println(s); //eig unnötig.
                 //daten hier im String arr speichern:
-                data.add(id+ ";" + db_url);
+                data.add(db_url);
                 count++;
                 //array an db urls weitergeben an queue
             }
