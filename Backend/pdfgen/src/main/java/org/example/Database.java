@@ -24,7 +24,10 @@ public class Database {
 
                 // Execute a query
                 String query = "SELECT * FROM customer where id = " + id;
-                ResultSet resultSet = statement.executeQuery(query);
+                PreparedStatement ps = connection.prepareStatement(query);
+
+
+                ResultSet resultSet = ps.executeQuery();
 
                 // Process the results
                 while (resultSet.next()) {
