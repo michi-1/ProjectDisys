@@ -29,14 +29,23 @@ public class Receiver {
             String recMessage=new String(delivery.getBody(), StandardCharsets.UTF_8);
 
             System.out.println("Received "+recMessage);
-
+                //Sender wird definiert
+                String[] messages=recMessage.split(";");
+                String cusId=messages[0];
+                String recURL=messages[1];
                 Sender sender = new Sender();
-                sender.setCustomerId(recMessage);
+                //Die Funktion setCustomerId() wird aufgerufen
+                sender.setCustomerId(cusId);
+                sender.setkwhsum(recURL);
+                String[] newURL=recURL.split(":");
+                //Eine Datenbankinstanz wird definiert
                 Database database=new Database();
-                //recMessage.split()
+               database.setPort(Integer.parseInt(newURL[1]));
+
                 database.selectKwh(sender);
-                //String message= sender.sendCustomerId();
-                sender.send(recMessage);
+                String message=sender.sendCustomerId();
+                sender.send(message);
+
 
 
 

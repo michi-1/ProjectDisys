@@ -6,12 +6,14 @@ public class Database {
     private static String url;
     private final static String DRIVER = "postgresql";
     private final static String HOST = "localhost";
-    private static int PORT=30011;
-
-
+    private static int PORT;
     private final static String DATABASE_NAME = "stationdb";
     private final static String USERNAME = "postgres";
     private final static String PASSWORD = "postgres";
+
+    public static void setPort(int port){
+    PORT=port;
+    }
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(getUrl());
@@ -50,7 +52,7 @@ public class Database {
     }
 
 
-
-
-
+    public int getPort() {
+        return PORT;
+    }
 }

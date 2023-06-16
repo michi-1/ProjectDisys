@@ -26,7 +26,7 @@ Send s1 = new Send();
     @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> get(@PathVariable String id) throws FileNotFoundException {
         System.out.println(id);
-        File pdfFile = new File("C:\\Users\\Michi\\IdeaProjects\\ProjectDisys\\Backend\\Files\\"+id+".pdf");
+        File pdfFile = new File("Files\\"+id+".pdf");
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment; filename=1.pdf");
         return ResponseEntity
