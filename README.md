@@ -8,6 +8,6 @@ To Show Invoice:
 3. Press Show Invoice Button   
 
 Project Split-up   
-Michael Reiter: JavaFX Client, RestAPI, PDF Generator
+Michael Reiter: JavaFX Client, RestAPI, PDF Generator  
 Maria Mirnic: Station Data Collector, Data Collection Receiver  
 Nazia Nazari: Data Collection Dispatcher  
