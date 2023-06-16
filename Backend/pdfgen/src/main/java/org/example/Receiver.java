@@ -34,9 +34,8 @@ public class Receiver {
             String id = recMessage.split(";")[0];
             String kwh = recMessage.split(";")[1];
             Database db = new Database();
-            db.GetCustomerData(id,kwh);
 
-
+                db.GetCustomerData(id, kwh);
 
 
         };

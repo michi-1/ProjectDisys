@@ -16,7 +16,6 @@ public class Main {
     public static void main(String[] args) throws DocumentException, IOException, TimeoutException {
         System.out.println("pdfgen");
         Receiver rec = new Receiver();
-
         rec.receive();
     }
 }
