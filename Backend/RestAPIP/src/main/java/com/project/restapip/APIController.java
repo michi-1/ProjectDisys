@@ -19,9 +19,9 @@ Send s1 = new Send();
 
     @PostMapping("/post/{id}")
     public String post(@RequestBody String id2, @PathVariable String id) {
-        System.out.println(id2);
+
         s1.sender(id);
-        return "Hello, " + id + "!";
+        return  id  ;
     }
     @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> get(@PathVariable String id) throws FileNotFoundException {
