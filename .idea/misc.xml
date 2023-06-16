@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/Backend/StationDataCollector/StationDataCollector/pom.xml" />
         <option value="$PROJECT_DIR$/Backend/StationDataReceiver/pom.xml" />
         <option value="$PROJECT_DIR$/Backend/DataCollectionReceiver/pom.xml" />
+        <option value="$PROJECT_DIR$/Backend/pdfgen/pom.xml" />
       </list>
     </option>
   </component>

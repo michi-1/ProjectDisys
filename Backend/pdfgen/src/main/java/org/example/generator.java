@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class generator {
-    public void generate(String name, String name2, Integer id) throws FileNotFoundException, DocumentException {
+    public void generate(String name, String name2, Integer id, String kwh) throws FileNotFoundException, DocumentException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream("Files\\"+id+".pdf"));
 
@@ -15,11 +15,12 @@ public class generator {
         Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
         Chunk chunk = new Chunk("Name: "+ name+" "+name2, font);
         Paragraph chunk2 = new Paragraph("Customer ID: "+id.toString(), font);
-        Paragraph chunk3 = new Paragraph("KWH usage: 5", font);
+        Paragraph chunk3 = new Paragraph("KWH usage: "+kwh , font);
 
         document.add(chunk2);
 
         document.add(chunk);
+        document.add(chunk3);
         document.close();
     }
 }
