@@ -61,7 +61,9 @@ public class Receiver {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 
             String counter=new String(delivery.getBody(), StandardCharsets.UTF_8);
-            String counterValue = counter.replaceAll("^.*Counter: (\\d+).*$", "$1");
+            String[] purpleInfos=counter.split(";");
+            String counterValue=purpleInfos[1];
+            //String counterValue = counter.replaceAll("^.*Counter: (\\d+).*$", "$1");
             cnt=Integer.parseInt(counterValue);
             try {
                 receive();
