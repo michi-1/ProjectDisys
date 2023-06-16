@@ -74,7 +74,9 @@ public class Queue {
             System.out.println(message);
             channel.queueDeclare(QUEUE_NAME2, false, false, false, null);
             channel.basicPublish("", QUEUE_NAME2, null, message.getBytes(StandardCharsets.UTF_8));
-            sendPurple(channel, customerid, length);
+            if (i == length - 1) {
+                sendPurple(channel, customerid, length);
+            }
         }
     }
 
@@ -82,14 +84,16 @@ public class Queue {
     public void sendPurple(Channel channel, int customerid, int count) throws IOException, TimeoutException, SQLException {
         System.out.println("sendPurple()");
         channel.queueDeclare(QUEUE_NAME1, false, false, false, null);
-        String message = "Customerid und Counter: ";
+
         String cid = String.valueOf(customerid);
         String cnt = String.valueOf(count);
+        String message = cid + ";" + cnt;
+        System.out.println("message: " + message);
        // System.out.println("Customerid: " +  cid +  "Counter: " + cnt);
 
+
         channel.basicPublish("", QUEUE_NAME1, null, message.getBytes(StandardCharsets.UTF_8));
-        channel.basicPublish("", QUEUE_NAME1, null, cid.getBytes(StandardCharsets.UTF_8));
-        channel.basicPublish("", QUEUE_NAME1, null, cnt.getBytes(StandardCharsets.UTF_8));
+
 
     }
 

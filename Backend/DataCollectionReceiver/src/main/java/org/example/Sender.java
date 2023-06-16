@@ -14,7 +14,7 @@ public class Sender {
     private final static String QUEUE_NAME = "Yellow";
     private static List<Double> kwhSum=new ArrayList<>();
     int customerID;
-    List<Double> list(String recMessage, int count,int cnt) {
+    public List<Double> list(String recMessage, int count,int cnt) {
 
         String[] messages = recMessage.split(";");
 
@@ -29,7 +29,7 @@ public class Sender {
       return kwhSum;
     }
 
-    String summe(List<Double> kwhSum,int cnt){
+    public String summe(List<Double> kwhSum,int cnt){
         double summe=0;
         for (double kwh :kwhSum) {
             summe += kwh;
