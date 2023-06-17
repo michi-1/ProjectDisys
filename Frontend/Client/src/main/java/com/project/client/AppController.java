@@ -12,12 +12,11 @@ import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 import java.awt.Desktop;
 
 
 
-public class HelloController {
+public class AppController {
     public String s="";
     @FXML
     private Label welcomeText;
