@@ -16,7 +16,8 @@ public class Receiver {
     private int cnt;
 
     int count=0;
-    public void receive() throws IOException, TimeoutException {
+    int purpleID;
+    public void receive(int purpleID) throws IOException, TimeoutException {
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
@@ -34,9 +35,8 @@ public class Receiver {
             count++;
             List<Double> list=sender.list(recMessage,count,cnt);
 
-
             if(count==cnt) {
-                String message=sender.summe(list,cnt);
+                String message=sender.summe(list,cnt,purpleID);
                 sender.send(message);
                 count=0;
             }
@@ -45,7 +45,6 @@ public class Receiver {
 
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {});
     }
-
 
     public void rec() throws IOException, TimeoutException {
 
@@ -63,10 +62,13 @@ public class Receiver {
             String counter=new String(delivery.getBody(), StandardCharsets.UTF_8);
             String[] purpleInfos=counter.split(";");
             String counterValue=purpleInfos[1];
+            String idValue=purpleInfos[0];
+            purpleID=Integer.parseInt(idValue);
+
             //String counterValue = counter.replaceAll("^.*Counter: (\\d+).*$", "$1");
             cnt=Integer.parseInt(counterValue);
             try {
-                receive();
+                receive(purpleID);
             } catch (TimeoutException e) {
                 throw new RuntimeException(e);
             }

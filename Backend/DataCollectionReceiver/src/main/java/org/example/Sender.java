@@ -29,15 +29,21 @@ public class Sender {
       return kwhSum;
     }
 
-    String summe(List<Double> kwhSum,int cnt){
+    String summe(List<Double> kwhSum,int cnt,int purpleID){
         double summe=0;
         for (double kwh :kwhSum) {
             summe += kwh;
+        }
+        if(customerID!=purpleID){
+            System.out.println("Es ist ein Fehler aufgetreten. " +
+                    "Die ID aus dem StationDataCollector und aus dem DataCollectionReceiver stimmen nicht überein");
+            summe=0;
         }
         String message=customerID+";"+summe;
         if(kwhSum.size()==cnt){
             kwhSum.clear();
         }
+
         return message;
     }
     public void send(String message) {
