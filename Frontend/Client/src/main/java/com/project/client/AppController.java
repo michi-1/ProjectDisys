@@ -1,6 +1,8 @@
 package com.project.client;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -50,26 +52,45 @@ public class AppController {
     }
     @FXML
     protected void onShowInvoiceClick() throws IOException {
-        s=customerID.getText();
+        s = customerID.getText();
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/get/"+s))
+                .uri(URI.create("http://localhost:8080/get/" + s))
                 .build();
-        System.out.println("http://localhost:8080/get/"+s);
+        System.out.println("http://localhost:8080/get/" + s);
         client.sendAsync(request, HttpResponse.BodyHandlers.ofByteArray())
-                .thenApply(HttpResponse::body)
+                .thenApply(response -> {
+                    // Check the response status code
+                    if (response.statusCode() == 404) {
+                        // Display an error message to the user
+                        Platform.runLater(() -> {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("File Not Found");
+                            alert.setHeaderText(null);
+                            alert.setContentText("The requested PDF file was not found.");
+                            alert.showAndWait();
+                        });
+                        return null;
+                    } else if (response.statusCode() == 200) {
+                        return response.body();
+                    } else {
+                        throw new RuntimeException("Unexpected response status code: " + response.statusCode());
+                    }
+                })
                 .thenAccept(responseBody -> {
-                    try {
-                        // Save the response body as a temporary PDF file
-                        String tempFileName = "temp.pdf";
-                        Files.write(Paths.get(tempFileName), responseBody);
+                    if (responseBody != null) {
+                        try {
+                            // Save the response body as a temporary PDF file
+                            String tempFileName = "temp.pdf";
+                            Files.write(Paths.get(tempFileName), responseBody);
 
-                        // Open the PDF file in the default web browser
-                        Desktop.getDesktop().open(new File(tempFileName));
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                            // Open the PDF file in the default web browser
+                            Desktop.getDesktop().open(new File(tempFileName));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
-
     }
+
 }

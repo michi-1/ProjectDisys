@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
+import org.springframework.http.HttpStatus;
 
 import java.awt.*;
 import java.io.File;
@@ -26,13 +27,26 @@ Send s1 = new Send();
     @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> get(@PathVariable String id) throws FileNotFoundException {
         System.out.println(id);
-        File pdfFile = new File("Files\\"+id+".pdf");
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=1.pdf");
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(new FileInputStream(pdfFile)));
+        File pdfFile = new File("Files\\" + id + ".pdf");
+        if (!pdfFile.exists()) {
+            return ResponseEntity
+                    .notFound()
+                    .build(); // Return a 404 Not Found response
+        }
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "attachment; filename=1.pdf");
+            InputStreamResource inputStreamResource = new InputStreamResource(new FileInputStream(pdfFile));
+            return ResponseEntity
+                    .ok()
+                    .headers(headers)
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(inputStreamResource);
+        } catch (FileNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build(); // Return a 500 Internal Server Error response if there's an error reading the file
+        }
     }
+
 }
