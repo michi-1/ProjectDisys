@@ -9,6 +9,7 @@ import java.util.concurrent.TimeoutException;
 public class Send {
     private final static String QUEUE_NAME = "Red";
     public String sender(String s1){
+        System.out.println("Rest Api Application:");
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setPort(30003);
