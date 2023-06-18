@@ -18,35 +18,36 @@ import java.io.FileNotFoundException;
 public class APIController {
 Send s1 = new Send();
 
-    @PostMapping("/post/{id}")
+    @PostMapping("/post/invoices/{id}")
     public String post(@RequestBody String id2, @PathVariable String id) {
 
         s1.sender(id);
         return  id  ;
     }
-    @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+    @GetMapping(value = "/get/invoices/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> get(@PathVariable String id) throws FileNotFoundException {
         System.out.println(id);
         File pdfFile = new File("Files\\" + id + ".pdf");
         if (!pdfFile.exists()) {
-            return ResponseEntity
-                    .notFound()
-                    .build(); // Return a 404 Not Found response
+            return ResponseEntity.notFound().build(); // Return a 404 Not Found response
         }
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "attachment; filename=1.pdf");
             InputStreamResource inputStreamResource = new InputStreamResource(new FileInputStream(pdfFile));
-            return ResponseEntity
-                    .ok()
+
+            // Get the creation date of the PDF file
+            long creationDate = pdfFile.lastModified();
+            headers.add("X-Creation-Date", String.valueOf(creationDate));
+
+            return ResponseEntity.ok()
                     .headers(headers)
                     .contentType(MediaType.APPLICATION_PDF)
                     .body(inputStreamResource);
         } catch (FileNotFoundException e) {
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .build(); // Return a 500 Internal Server Error response if there's an error reading the file
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Return a 500 Internal Server Error response if there's an error reading the file
         }
     }
+
 
 }
