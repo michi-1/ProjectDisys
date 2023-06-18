@@ -14,7 +14,7 @@ import java.util.concurrent.TimeoutException;
 
 public class Main {
     public static void main(String[] args) throws DocumentException, IOException, TimeoutException {
-        System.out.println("pdfgen");
+        System.out.println("pdfgenerator");
         Receiver rec = new Receiver();
         rec.receive();
     }

@@ -10,7 +10,6 @@ import java.util.concurrent.TimeoutException;
 
 public class Sender {
     private final static String QUEUE_NAME = "Blue";
-    private String url;
     private String customerId;
 
     private String kwh_sum;
@@ -39,10 +38,12 @@ public class Sender {
                 Connection connection = factory.newConnection();
                 Channel channel = connection.createChannel()
         ) {
+            // Hier wird eine queue deklariert
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
 
             try {
+                // Nachricht wird veröffentlicht
                 channel.basicPublish("", QUEUE_NAME, null, messageBytes);
                 System.out.println("Sent message: " + message);
             } catch (IOException e) {
@@ -57,6 +58,7 @@ public class Sender {
 
 
     public String sendCustomerId(){
+        // Nachricht in Sendeformat bringen
         String message=this.kwh_sum+";"+this.customerId;
         return message;
     }

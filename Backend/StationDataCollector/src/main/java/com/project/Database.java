@@ -15,18 +15,18 @@ public class Database {
     PORT=port;
     }
 
+    // Stellt eine Verbindung zur Datenbank her.
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(getUrl());
     }
-
+    // Generiert die URL für die Verbindung zur Datenbank.
     private static String getUrl() {
         return String.format(
                 "jdbc:%s://%s:%s/%s?user=%s&password=%s", DRIVER, HOST, PORT, DATABASE_NAME, USERNAME, PASSWORD
         );
     }
-
-
-
+     // Holt die kWh-Werte aus der Datenbank und berechnet die Summe.
     public String selectKwh(Sender sender) {
         String query = "SELECT kwh FROM charge where customer_id=?";
         double kwh_sum=0;

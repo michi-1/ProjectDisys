@@ -12,34 +12,23 @@ import java.util.concurrent.TimeoutException;
 
 public class Sender {
     private final static String QUEUE_NAME = "Yellow";
-    private static List<Double> kwhSum=new ArrayList<>();
-    int customerID;
-    List<Double> list(String recMessage, int count,int cnt) {
-
-        String[] messages = recMessage.split(";");
-
-         double message=Double.parseDouble(messages[0]);
-         customerID=Integer.parseInt(messages[1]);
-                if(count<=cnt) {
-                    this.kwhSum.add(message);
-                }
-                /*if(kwhSum.size()==cnt){
-                   kwhSum.clear();
-                }*/
-      return kwhSum;
-    }
-
-    String summe(List<Double> kwhSum,int cnt,int purpleID){
+    // Summe der kwhSummen aus dem Collector wird gebildet
+    String summe(List<Double> kwhSum,int cnt,int customerID, int purpleID){
         double summe=0;
         for (double kwh :kwhSum) {
             summe += kwh;
         }
+        // wenn die customerID aus dem Collector nicht gleich ist,
+        // wie die CustomerID aus dem Dispatcher, kommt ein Fehler und die Summe wird auf 0 gesetzt
+        // damit keine pdf geprintet wird
         if(customerID!=purpleID){
             System.out.println("Es ist ein Fehler aufgetreten. " +
                     "Die ID aus dem StationDataCollector und aus dem DataCollectionReceiver stimmen nicht überein");
             summe=0;
         }
+        // Format für pdf gebildet
         String message=customerID+";"+summe;
+        //Liste kwhSume wird danach geleert
         if(kwhSum.size()==cnt){
             kwhSum.clear();
         }
@@ -60,6 +49,7 @@ public class Sender {
             byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
 
             try {
+                // Nachricht an die Queue senden
                 channel.basicPublish("", QUEUE_NAME, null, messageBytes);
                 System.out.println("Sent message: " + message);
             } catch (IOException e) {

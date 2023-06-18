@@ -24,7 +24,7 @@ public class Main {
 
 
         //empfängt custerid
-
+        System.out.println("Data Collection Dispatcher: ");
         Queue queue = new Queue();
         queue.receive();
 
