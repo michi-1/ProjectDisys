@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException;
 public class Sender {
     private final static String QUEUE_NAME = "Yellow";
     // Summe der kwhSummen aus dem Collector wird gebildet
-    String summe(List<Double> kwhSum,int cnt,int customerID, int purpleID){
+    public String summe(List<Double> kwhSum, int cnt, int customerID, int purpleID){
         double summe=0;
         for (double kwh :kwhSum) {
             summe += kwh;
