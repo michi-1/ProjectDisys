@@ -2,7 +2,7 @@ package StationDataCollectorTest;
 
 import com.project.Sender;
 import org.checkerframework.checker.fenum.qual.SwingTextOrientation;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
