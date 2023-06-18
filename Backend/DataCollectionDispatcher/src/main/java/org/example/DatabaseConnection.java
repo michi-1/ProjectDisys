@@ -39,7 +39,7 @@ public class DatabaseConnection{
                 int id = rs.getInt("id");
                 float lat = rs.getFloat("lat");
                 Station s = new Station(id, db_url, lat, lng);
-                System.out.println(s); //eig unnötig.
+                System.out.println(s);
                 //daten hier im String arr speichern:
                 data.add(db_url);
                 count++;

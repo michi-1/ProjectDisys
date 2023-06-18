@@ -44,7 +44,9 @@ public class AppController {
                     .uri(URI.create("http://localhost:8080/post/invoices/"+s))
                     .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
                     .build();
-            System.out.printf("%s\n%s\n", request, params);
+            System.out.printf("Customerid: %s \n", s);
+            System.out.printf("%s\n", request);
+
 
             var response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println("Response Status Code: " + response.statusCode());
