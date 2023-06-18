@@ -11,25 +11,5 @@ public class Main {
         Receiver receiver = new Receiver();
         receiver.receive();
 
-
-
-//Test
-
-        //sender.send();
-
-         /*try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        int customerID = receiver.getCustomerID();
-        String url = receiver.getUrl();
-        int stationnr = receiver.getStationnr();
-
-        System.out.println("Customer ID: " + customerID);
-        System.out.println("URL: " + url);
-        System.out.println("Stationsnummer: " + stationnr);*/
-
-
     }
 }

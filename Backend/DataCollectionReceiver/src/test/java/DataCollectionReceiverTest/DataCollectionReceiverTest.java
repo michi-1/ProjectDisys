@@ -8,19 +8,20 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DataCollectionReceiverTest {
-
 //tests
 @Test
     public void checkKWHSum(){
-
+    //checks, whether the KWH is summed up correctly.
         Sender sender = new Sender();
 
         List <Double> numbers = new ArrayList<>();
         numbers.add(2.3);
         numbers.add(4.5);
 
-       String expected =  sender.summe(numbers, 2);
-       String real = "0;6.8"; //wir haben jz einfach customnerid 0 angenommen.
+       String real =  sender.summe(numbers, 3); //cnt = Anzahl der db
+       String expected = "0;6.8"; //customerid = 0
+    //String wird in der form customerid;SumOfKwH zurückgegeben
+    //Normalerweise ist customerid = 0 kein valider Zustand in diesem Fall ist die customerid = 0, da wir nur die Rechenfunktion testen
         // Assert
         assertEquals(expected, real);
     }
@@ -30,7 +31,7 @@ public class DataCollectionReceiverTest {
         //check function list
 //speichert einzelne kwh summen aus der id
         Sender sender = new Sender();
-        String message1 = "361;2;";
+        String message1 = "361;2;"; //msg der form kwH; customerid
         String message2 = "222;2;";
         String message3 = "531;2;";
 
@@ -49,10 +50,7 @@ public class DataCollectionReceiverTest {
         //einzelne kwhs in eine list tun
         //messages split ergibt: customerid, counter
 
-
         assertEquals(expected, real);
-
-
     }
 }
 
